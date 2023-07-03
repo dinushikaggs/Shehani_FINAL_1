@@ -35,7 +35,7 @@ function UserForm() {
       }
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        Swal.fire({
+        Swal.fire({ //sweet alert
           position: "center",
           icon: "error",
           text: error.response.data.error,
@@ -87,7 +87,7 @@ function UserForm() {
       </button>
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit} //onsubmit is a formik function
         validationSchema={validationSchema}
       >
         <Form className="Userform">

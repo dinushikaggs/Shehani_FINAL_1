@@ -56,7 +56,7 @@ function Heder() {
         }
       );
 
-      console.log(response.data);
+      // console.log(response.data);
 
       if (response.data.error) {
         setErrorMessage(response.data.error);
@@ -107,6 +107,7 @@ function Heder() {
       <Modal show={showForm} onHide={handleModalClose} className="custom-modal">
         <Modal.Header closeButton>
           <Modal.Title style={{ color: "darkblue" }}>
+            {/* name of the user */}
             {decodedToken && decodedToken.result.full_name}
           </Modal.Title>
         </Modal.Header>

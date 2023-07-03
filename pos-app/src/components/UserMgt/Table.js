@@ -2,7 +2,6 @@ import "./Table.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Modal, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import * as Yup from "yup";
 
 function UserTable() {
@@ -11,7 +10,7 @@ function UserTable() {
   const [showModal, setShowModal] = useState(false);
   const [editedUser, setEditedUser] = useState(null);
   const [searchIdInput, setSearchIdInput] = useState("");
-  const [searchNameInput, setSearchNameInput] = useState("");
+  const [searchNameInput, setSearchNameInput] = useState(""); //search
   const [errors, setErrors] = useState({});
 
   useEffect(() => {

@@ -49,6 +49,7 @@ const logIn = async (req, res) => {
 };
 
 const register = async (req, res) => {
+  //form
   try {
     const { full_name, address, email, mobile_no, user_password } = req.body;
     let { user_role } = req.body;
@@ -165,15 +166,14 @@ const resetPassword = async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 };
-
 const forgotPassword = async (req, res) => {
   const user = await Users.findOne({
     where: { email: req.params.email },
   });
 
-  console.log(user);
-
-  if (!user) res.json("Email not registered");
+  if (!user) {
+    return res.status(404).json({ error: "Email not registered" });
+  }
 
   const userId = user.id;
   const token = jwt.sign({ userId }, process.env.SECRET, {
@@ -206,6 +206,7 @@ const forgotPassword = async (req, res) => {
       // Handle the success case here, such as logging it or returning a success response
     }
   });
+
   res.json("Success");
 };
 

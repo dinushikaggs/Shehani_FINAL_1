@@ -15,7 +15,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("http://localhost:3001/users/login", {
         email,
@@ -31,7 +30,7 @@ const Login = () => {
           timer: 1200,
           width: "250px",
         });
-        localStorage.setItem("accessToken", response.data.token);
+        localStorage.setItem("accessToken", response.data.token); //The access token from the response stored local storage using localStorage.setItem().
 
         if (response.data.results.user_role === "admin") {
           history("/Dashboard")();
@@ -45,7 +44,7 @@ const Login = () => {
       if (error.response && error.response.status === 401) {
         setErrorMessage("Username or password is incorrect.");
       } else {
-        setErrorMessage("An error occurred. Please try again.");
+        setErrorMessage("Username or password is incorrect.");
       }
     }
   };
@@ -57,10 +56,7 @@ const Login = () => {
   const handleForgotPasswordSubmit = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:3001/Users/forgotPass/${forgotPasswordEmail}`,
-        {
-          // email: forgotPasswordEmail,
-        }
+        `http://localhost:3001/Users/forgotPass/${forgotPasswordEmail}`
       );
 
       if (response.status === 200) {
@@ -78,14 +74,25 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error submitting forgot password:", error);
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        text: "Invalid Email Re-enter",
-        showConfirmButton: false,
-        timer: 1500,
-        width: "250px",
-      });
+      if (error.response && error.response.data === "Email not registered") {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          text: "Email not registered",
+          showConfirmButton: false,
+          timer: 1500,
+          width: "250px",
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          text: "Failed to send reset password link",
+          showConfirmButton: false,
+          timer: 1500,
+          width: "250px",
+        });
+      }
     }
   };
 

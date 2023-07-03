@@ -13,9 +13,9 @@ const ResetPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("error");
 
-  console.log(id);
-  console.log(token);
-  console.log(confirmPassword);
+  // console.log(id);
+  // console.log(token);
+  // console.log(confirmPassword);
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -44,8 +44,8 @@ const ResetPassword = () => {
           history("/");
         });
       }
-      console.log(response.status);
-      console.log(password);
+      // console.log(response.status);
+      // console.log(password);
       // Handle the response from the API
       // Display success or error message to the user
     } catch (error) {

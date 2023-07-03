@@ -21,22 +21,22 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  try {
-    const { mobile_no } = req.body;
+  // try {
+  //   const { mobile_no } = req.body;
 
-    // Check if the mobile number already exists
-    const existingUser = await Users.findOne({ where: { mobile_no } });
-    if (existingUser) {
-      return res.status(400).json({ error: "Mobile no already exists" });
-    }
+  //   // Check if the mobile number already exists
+  //   const existingUser = await Users.findOne({ where: { mobile_no } });
+  //   if (existingUser) {
+  //     return res.status(400).json({ error: "Mobile no already exists" });
+  //   }
 
-    const post = req.body;
-    await Users.create(post);
-    res.json(post);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Failed to create user" });
-  }
+  const post = req.body;
+  await Users.create(post);
+  res.json(post);
+  // } catch (error) {
+  //   // console.log(error);
+  //   // res.status(500).json({ error: "Failed to create user" });
+  // }
 });
 
 router.put("/:id", async (req, res) => {

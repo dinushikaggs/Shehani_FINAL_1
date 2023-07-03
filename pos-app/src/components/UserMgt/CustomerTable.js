@@ -9,7 +9,7 @@ function CustomerTable() {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [editedCustomer, setEditedCustomer] = useState(null);
-  const [searchInput, setSearchInput] = useState("");
+  // const [searchInput, setSearchInput] = useState("");
   const [searchNameInput, setSearchNameInput] = useState("");
 
   useEffect(() => {
@@ -64,9 +64,10 @@ function CustomerTable() {
   const removeCustomer = (customer_id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to remove this customer?"
-    );
+    ); // in built pop-up woindow
 
     if (confirmDelete) {
+      //if user conform delete
       axios
         .delete(`http://localhost:3001/customers/${customer_id}`)
         .then((response) => {
@@ -102,7 +103,7 @@ function CustomerTable() {
                 className="CustomersearchBar"
                 type="text"
                 placeholder="Search by name"
-                value={searchNameInput}
+                value={searchNameInput} //assign input value to searchNameInput
                 onChange={(e) => setSearchNameInput(e.target.value)}
               />
             </div>
@@ -132,6 +133,7 @@ function CustomerTable() {
                 )
                 .slice(0, 3)
                 .map((customer, key) => {
+                  //maps over the filtered and sliced array of customers, creating a table row for each customer.
                   return (
                     <tr key={key}>
                       {/* <td>{customer.id}</td> */}
@@ -193,7 +195,7 @@ function CustomerTable() {
                 <input
                   type="text"
                   name="email"
-                  value={editedCustomer && editedCustomer.email}
+                  value={editedCustomer && editedCustomer.email} //chec k edited customer null, undefined, false, or an empty string
                   onChange={handleInputChange}
                   style={{ width: "100%", backgroundColor: "white" }}
                 />
